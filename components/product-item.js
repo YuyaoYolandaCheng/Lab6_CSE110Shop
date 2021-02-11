@@ -1,9 +1,5 @@
 // product-item.js
 
-myStorage = window.localStorage;
-var cart_count = document.getElementById('cart-count');
-var in_cart = JSON.parse(myStorage.getItem('in_cart'));
-    
 class ProductItem extends HTMLElement 
 {
 	constructor(id, image, description, title, price)
@@ -11,7 +7,10 @@ class ProductItem extends HTMLElement
 		super();
 		
 		var shadow = this.attachShadow({mode: 'open'});
-		
+    
+    myStorage = window.localStorage;
+    var cart_count = document.getElementById('cart-count');
+    var in_cart = JSON.parse(myStorage.getItem('in_cart'));
     var list = document.createElement('list');
     var img = document.createElement('img');
     var name = document.createElement('p');
@@ -37,12 +36,15 @@ class ProductItem extends HTMLElement
     }
 
 		click.onclick = function (){
+      in_cart = JSON.parse(myStorage.getItem('in_cart'));
 			if (click.innerHTML == "Add to Cart"){
+        alert("added");
 				click.innerHTML = "Remove from Cart";
 				cart_count.innerHTML = parseInt(cart_count.innerHTML) + 1;
 				in_cart.push(id);
 			}
 			else{
+        alert("removed");
 				click.innerHTML = "Add to Cart";
 				cart_count.innerHTML = parseInt(cart_count.innerHTML) - 1;
 				in_cart.splice(in_cart.indexOf(id), 1);
@@ -53,7 +55,7 @@ class ProductItem extends HTMLElement
     list.appendChild(img);
 		list.appendChild(name);
 		list.appendChild(price_tag);
-		list.appendChild(click);
+    list.appendChild(click);
     
     var link = document.createElement('link');
     link.rel = "stylesheet";
