@@ -38,7 +38,7 @@ nav {
   justify-content: center;
   padding: 10px;
 }
-
+/*Added .. in front of the urls for shop-icon and cart-icon because they don't work correctly without them for static files because we need relative instead of absolute paths  */
 #shop-icon {
   content: url("../assets/shop-icon.png");
 }
